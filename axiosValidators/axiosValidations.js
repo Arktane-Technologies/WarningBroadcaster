@@ -18,7 +18,7 @@ const httpsAgent = new https.Agent({
 
 let axiosPostValidator = (url, body) => {
 
-    log(`${current.toLocaleString()}, AxiosPost , Validator function called `);
+//    log(`${current.toLocaleString()}, AxiosPost , Validator function called `);
     return new Promise(function (resolve, reject) {
         axiosPost(url, body, 1, 5).then((response) =>
             resolve(response), (error) => { reject(error) })
@@ -27,7 +27,8 @@ let axiosPostValidator = (url, body) => {
 }
 
 function axiosPost(url, body, currentCount, maxCount) {
-    log(`${current.toLocaleString()}, AxiosPost ,Retrying to reach the server attempt ${currentCount} `);
+    if(currentCount>1)
+        log(`${current.toLocaleString()}, AxiosPost ,Retrying to reach the server attempt ${currentCount} `);
 
     return new Promise(function (resolve, reject) {
         if (currentCount <= maxCount) {
@@ -65,7 +66,7 @@ function axiosPost(url, body, currentCount, maxCount) {
         }
         else {
             reject({ status: false, msg: "Max retries reached" })
-            log(`${current.toLocaleString()}, AxiosPost ,Succesfully validate all validations `);
+            log(`${current.toLocaleString()}, AxiosPost , Max retries reached. Could not completed the request`);
         }
 
     })
@@ -73,7 +74,7 @@ function axiosPost(url, body, currentCount, maxCount) {
 
 let axiosPutValidator = (url, body) => {
 
-    log(`${current.toLocaleString()}, AxiosPut , Validator function called `);
+ //   log(`${current.toLocaleString()}, AxiosPut , Validator function called `);
     return new Promise(function (resolve, reject) {
         axiosPut(url, body, 1, 5).then((response) => resolve(response), (error) => {
             reject(error)
@@ -84,7 +85,8 @@ let axiosPutValidator = (url, body) => {
 }
 
 function axiosPut(url, body, currentCount, maxCount) {
-    log(`${current.toLocaleString()}, AxiosPut ,Retrying to reach the server attempt ${currentCount} `);
+    if(currentCount>1)
+        log(`${current.toLocaleString()}, AxiosPut ,Retrying to reach the server attempt ${currentCount} `);
 
     return new Promise(function (resolve, reject) {
         if (currentCount <= maxCount) {
@@ -122,7 +124,7 @@ function axiosPut(url, body, currentCount, maxCount) {
         }
         else {
             reject({ status: false, msg: "Max retries reached" })
-            log(`${current.toLocaleString()}, AxiosPut ,Succesfully validate all validations `);
+            log(`${current.toLocaleString()}, AxiosPut, Max retries reached. Could not completed the request `);
         }
 
     })
@@ -140,7 +142,8 @@ let axiosDeleteValidator = (url, body) => {
 }
 
 function axiosDelete(url, body, currentCount, maxCount) {
-    log(`${current.toLocaleString()}, AxiosDelete ,Retrying to reach the server attempt ${currentCount} `);
+    if(currentCount>1)
+        log(`${current.toLocaleString()}, AxiosDelete ,Retrying to reach the server attempt ${currentCount} `);
 
     return new Promise(function (resolve, reject) {
         if (currentCount <= maxCount) {
@@ -178,7 +181,7 @@ function axiosDelete(url, body, currentCount, maxCount) {
         }
         else {
             reject({ status: false, msg: "Max retries reached" })
-            log(`${current.toLocaleString()}, AxiosDelete ,Succesfully validate all validations `);
+            log(`${current.toLocaleString()}, AxiosDelete , Max retries reached. Could not completed the request `);
         }
 
     })
@@ -187,7 +190,7 @@ function axiosDelete(url, body, currentCount, maxCount) {
 
 
 let axiosGetValidator = (url) => {
-    log(`${current.toLocaleString()}, AxiosGet , Validator function called `);
+//    log(`${current.toLocaleString()}, AxiosGet , Validator function called `);
     return new Promise(function (resolve, reject) {
         axiosGet(url, 1, 5).then((response) => resolve(response), (error) => {
             reject(error)
@@ -198,6 +201,7 @@ let axiosGetValidator = (url) => {
 }
 
 function axiosGet(url, currentCount, maxCount) {
+    if(currentCount>1)
     log(`${current.toLocaleString()}, AxiosGet ,Retrying to reach the server attempt ${currentCount} `);
 
     return new Promise(function (resolve, reject) {
@@ -236,7 +240,7 @@ function axiosGet(url, currentCount, maxCount) {
         }
         else {
             reject({ status: false, msg: "Max retries reached" })
-            log(`${current.toLocaleString()}, AxiosGet ,Succesfully validate all validations `);
+            log(`${current.toLocaleString()}, AxiosGet , Max retries reached. Could not completed the request `);
         }
 
     })
