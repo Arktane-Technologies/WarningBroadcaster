@@ -16,7 +16,7 @@ var current = new Date()
 module.exports.errorCategory = async (req, res) => {
     try {
         let errorCategory = req.body
-        console.log(current.toLocaleString(), errorCategory)
+        console.log(current.toLocaleString(),"Warning Broadcaster", errorCategory)
         res.status(200).send({messege:"Data recieved"})
 
     } catch (error) {

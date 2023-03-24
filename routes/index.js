@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const error = require('../controller/errorController')
+const error = require('../controller/warningBroadcaster')
 
 
 
