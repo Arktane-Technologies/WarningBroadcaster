@@ -4,19 +4,19 @@ const app = express();
 const port = 1000
 const axios = require('axios');
 
-// const consoleLog = true;
-// const fileLog = true;
-// const logFileName = "combined"
+const consoleLog = true;
+const fileLog = true;
+const logFileName = "combined"
 
 
-var current = new Date()
+
 
 
 
 module.exports.errorCategory = async (req, res) => {
     try {
-        let errorCategory = req.body
-        console.log(current.toLocaleString(),"Warning Broadcaster", errorCategory)
+        let messege = req.body
+        log(`\n\n${new Date().toLocaleString()}, Warning Broadcaster , ${messege.msg}\n`)
         res.status(200).send({messege:"Data recieved"})
 
     } catch (error) {
@@ -29,11 +29,11 @@ module.exports.errorCategory = async (req, res) => {
 
 
 
-// // logger data
+// logger data
 
-// function log(data) {
-//     if (consoleLog)
-//         console.log(data);
-//     if (fileLog)
-//         logger.log(logFileName, data, "info");
-// }
+function log(data) {
+    if (consoleLog)
+        console.log(data);
+    if (fileLog)
+        logger.log(logFileName, data, "info");
+}
